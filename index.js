@@ -78,7 +78,28 @@ class Person {
 */
 
 class Car {
-  
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons) {
+    this.tank = this.tank + gallons
+  }
+  drive(miles) {
+    let fuelUsage = miles/this.milesPerGallon
+    this.tank = this.tank - fuelUsage
+    this.odometer = this.odometer + miles
+    if (this.tank <= 0) {
+      fuelUsage = this.tank;
+      this.tank = this.tank - fuelUsage;
+      let milesDriven = fuelUsage * this.milesPerGallon;
+      this.odometer = this.odometer + milesDriven;
+      return `I ran out of fuel at ${this.odometer} miles`
+    }
+  }
+
 }
 
 /*
@@ -95,7 +116,14 @@ class Car {
 */
 
 class Lambdasian {
-  
+  constructor(attrs) {
+    this.name = attrs.name;
+    this.age = attrs.age;
+    this.location = attrs.location;
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`
+  }
 }
 
 /*
@@ -113,8 +141,19 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 
-class Instructor {
-
+class Instructor extends Lambdasian {
+  constructor(instructorAttrs) {
+    super(instructorAttrs);
+    this.specialty = instructorAttrs.specialty;
+    this.favLanguage = instructorAttrs.favLanguage;
+    this.catchPhrase = instructorAttrs.catchPhrase;
+  }
+  demo(subject){
+    return `Today we are learning about ${subject}`
+  }
+  grade(student, subject){
+    return `${student.name} receives a perfect score on ${subject}`
+  }
 }
 
 /*
