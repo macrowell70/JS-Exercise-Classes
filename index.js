@@ -157,7 +157,9 @@ class Instructor extends Lambdasian {
   givePoints(student){
     const curve = Math.floor(Math.random()*100)
     console.log('curve', curve)
-      if(curve >= 0 && curve < 20) {
+      if(curve === 0) {
+        return student.grade = student.grade
+      } else if(curve > 0 && curve < 20) {
         return student.grade += 5
       } else if (curve >= 20 && curve < 80) {
         return student.grade += 8
@@ -199,6 +201,17 @@ class Student extends Lambdasian{
   }
   sprintChallenge(subject) {
     return `${this.name} has begun sprint challenge on ${subject}`
+  }
+  graduate(teacher) {
+    for (let i = 0; i < 10; i++) {
+      teacher.givePoints(this)
+      console.log(this.grade)
+    }
+    if (this.grade >= 70) {
+      return `${this.name} has graduated with ${this.grade}%. Well done!`
+    } else {
+      return `${this.name} does not have enough points to graduate. Keep trying!`
+    }
   }
 }
 
