@@ -154,6 +154,17 @@ class Instructor extends Lambdasian {
   grade(student, subject){
     return `${student.name} receives a perfect score on ${subject}`
   }
+  givePoints(student){
+    const curve = Math.floor(Math.random()*100)
+    console.log('curve', curve)
+      if(curve >= 0 && curve < 20) {
+        return student.grade += 5
+      } else if (curve >= 20 && curve < 80) {
+        return student.grade += 8
+      } else {
+        return student.grade += 10
+      }
+  }
 }
 
 /*
